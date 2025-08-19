@@ -306,3 +306,103 @@ footer{
   }
   .intro h1{ font-size: 2.1rem; }
 }
+
+/* ===== Contact form styles ===== */
+.contact-page .contact-section{
+  max-width: 720px;
+  margin: 24px auto 60px;
+  padding: 0 20px;
+}
+
+.form-field{
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.form-field label{
+  font-weight: 600;
+  color: var(--brand-dark, #5a3d94);
+}
+
+.form-field input,
+.form-field textarea{
+  padding: 12px 14px;
+  border: 1px solid var(--border, #e5e5e5);
+  border-radius: 10px;
+  background: #fff;
+  font: inherit;
+  color: inherit;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.form-field input:focus,
+.form-field textarea:focus{
+  border-color: var(--brand, #6b4fad);
+  box-shadow: 0 0 0 3px rgba(107,79,173,.18);
+  outline: none;
+}
+
+.input-invalid{
+  border-color: #d92d20 !important;
+  box-shadow: 0 0 0 3px rgba(217,45,32,.12) !important;
+}
+
+.error-text{
+  min-height: 1.2em;
+  color: #d92d20;
+  font-size: .9rem;
+}
+
+.btn-primary{
+  display: inline-block;
+  padding: 10px 16px;
+  background: var(--brand, #6b4fad);
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .2s ease, transform .1s ease;
+}
+.btn-primary:hover{ background: var(--brand-dark, #5a3d94); }
+.btn-primary:active{ transform: translateY(1px); }
+
+/* ===== Confirmation Modal ===== */
+.modal-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display: none;               /* hidden by default */
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 10000;
+}
+.modal-overlay.is-open{ display: flex; }
+
+.modal-card{
+  width: min(520px, 92vw);
+  background: #fff;
+  border: 1px solid var(--border, #e5e5e5);
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-shadow: 0 14px 30px rgba(0,0,0,.18);
+}
+.modal-card h2{
+  margin: 0 0 8px;
+  color: var(--brand-dark, #5a3d94);
+}
+.modal-message{
+  white-space: pre-wrap;
+  background: #faf8ff;
+  border: 1px dashed var(--border, #e5e5e5);
+  border-radius: 8px;
+  padding: 10px;
+  margin: 8px 0 16px;
+}
+
+/* Tablet+ spacing */
+@media (min-width: 600px){
+  .contact-page .contact-section{ padding: 0; }
+}
