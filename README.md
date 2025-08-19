@@ -1,48 +1,49 @@
-**What the popup/interaction does**
-The script builds a custom newsletter popup with JavaScript (not just a browser alert).
+**Contact Form Feature**
 
-It creates a semi-transparent overlay and a small card with a heading, message, and a Close button.
+The project now includes a contact form (contact.html) where users can send us their name, email, and a message.
 
-When the user clicks Close, the popup is removed from the page (so it doesn’t block anything).
+The form captures user input.
 
-**What user action triggers it**
-I used an event listener on window for the "load" event.
+It checks the input in real time, so users see feedback as they type.
 
-js
-Copy
-Edit
-window.addEventListener('load', function () {
-  setTimeout(showNewsletterPopup, 3000);
-});
-After the page finishes loading, a 3-second delay runs, then the function showNewsletterPopup() displays the popup.
+When everything is correct, it shows a confirmation modal instead of reloading the page.
 
-Inside the popup, another event listener on the Close button removes the popup:
+**JavaScript Validation**
 
-js
-Copy
-Edit
-document.getElementById('close-popup').addEventListener('click', function () {
-  popup.remove();
-});
+I added validation rules with contact.js:
 
-**Why I chose that interaction**
-A custom popup looks more on-brand than alert() and lets me style it with CSS.
+Name: must not be empty and can only include letters, spaces, apostrophes, or hyphens.
 
-The 3-second delay feels less aggressive than showing it instantly—users see the page first, then the invite.
+Email: must not be empty and must follow a standard email format (e.g. example@mail.com).
 
-Using a close button gives control back to the user and keeps the experience friendly.
+Message: must not be empty and must have at least 10 characters.
 
-**Challenges and decisions**
-Creating elements vs. innerHTML:
-I used document.createElement('div') and innerHTML for the inner content to keep the code short. I had to be careful to append it before querying #close-popup (so the button exists in the DOM).
+If any of these rules fail, an error message appears instantly under the input field until the user fixes it.
 
-Cleanup:
-I made sure to call popup.remove() so there isn’t any leftover overlay blocking clicks behind it.
+**Modal Interaction**
 
-Timing:
-I chose setTimeout after "load" so images/styles are ready and the popup doesn’t feel jarring.
- 
-Future improvement idea:
-Use localStorage or cookies to only show the popup once per visitor, so it’s less repetitive.
+When the form passes all validation checks, the script prevents the usual form submission.
 
-Overall, the script uses a function (showNewsletterPopup) to define the behavior and event listeners to trigger and control it, keeping the code small, readable, and easy to expand later.
+Instead, it opens a styled modal window that shows the submitted details (name, email, and message).
+
+Users can close the modal by:
+
+Clicking the Close button
+
+Clicking outside the modal card
+
+Pressing the Esc key
+
+This makes the form feel interactive and user-friendly.
+
+**Decisions and Challenges**
+
+Instant feedback: I decided to validate inputs as the user types, so they don’t wait until submission to see errors.
+
+Custom modal vs. alert(): I built a custom modal instead of a simple alert() to keep the design consistent with the site and make it easier to style.
+
+Accessibility: I added aria attributes and focus handling so the modal is more accessible.
+
+Challenge: The hardest part was learning how to attach event listeners so that clicking “close,” clicking the background, or pressing “Esc” all worked correctly.
+
+Next step idea: In a future version, I’d like to send the form data to an email service or backend, but for now, the modal confirmation was enough to practice DOM manipulation and validation.
